@@ -1,4 +1,4 @@
-[_] Create 4 EC2 instances on 4 different VPC in different availability zones
+[_] Create 4 EC2 instances on 4 different subnets in different availability zones
 	[_] Use loops
 [_] Create 4 EC2 instances using nginx on 4 different VPCs in different availability zones
 [_] Create 4 EC2 instances using nginx with django on 4 different VPCs

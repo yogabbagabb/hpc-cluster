@@ -1,5 +1,6 @@
-[_] Create 4 EC2 instances on 4 different subnets in different availability zones
-[_] Create 4 EC2 instances using nginx on 4 different VPCs in different availability zones
+[X] Create 4 EC2 instances on 4 different subnets in different availability zones
+[X] Create 4 EC2 instances using nginx on 4 different subnets in different zones
+[_] Log into nginx instances
 [_] Create 4 EC2 instances using nginx with django on 4 different VPCs
 	[_] Alter the security group rules to only allow A->B, B->C and so forth
 	[_] Alter the security group rules to allow A to be accessed locally

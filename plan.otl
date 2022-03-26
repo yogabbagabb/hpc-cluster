@@ -1,7 +1,10 @@
 [X] Create 4 EC2 instances on 4 different subnets in different availability zones
 [X] Create 4 EC2 instances using nginx on 4 different subnets in different zones
 [_] Log into nginx instances
-[_] Create 4 EC2 instances using nginx with django on 4 different VPCs
+    [_] Enable inbound SSH traffic from your IP address to your instance.
+	[_] Ensure that the security group associated with your instance allows incoming SSH traffic from your IP address. The default security group for the VPC does not allow incoming SSH traffic by default. The security group created by the launch instance wizard enables SSH traffic by default. For more information, see Authorize inbound traffic for your Linux instances.
+	
+[_] Create 4 EC2 instances using nginx 
 	[_] Alter the security group rules to only allow A->B, B->C and so forth
 	[_] Alter the security group rules to allow A to be accessed locally
 [_] Create some python script on each django instance that forwards the request to the next server
@@ -11,3 +14,6 @@ module.vpc.private_subnets is a list of the private subnet ids
 subnet_id is an input to aws_instance
 	It takes an obvious value
 	Now how to loop over this?
+
+
+

@@ -23,6 +23,7 @@ data "aws_ami" "example" {
 resource "aws_instance" "web" {
   for_each  =  var.private_subnet_ids
   subnet_id = each.value
+  associate_public_ip_address = true
   ami           = data.aws_ami.example.id
   instance_type = "t3.micro"
   user_data = <<-EOF

@@ -1,7 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2512
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 HelveticaNeue;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
 \margl1440\margr1440\vieww28300\viewh16280\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -12,7 +13,8 @@ We want communication to take place from A to B to C to D. In particular, when h
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \fs24 \cf0 {{\NeXTGraphic Pasted Graphic.png \width20860 \height8900 \appleattachmentpadding0 \appleembedtype0 \appleaqc
-}¬}\
+}¬}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
 \
 Notes on setting up a VPC: \
 \
@@ -29,4 +31,21 @@ At times, we may desire the same terraform configuration to apply to different s
 \
 If we want to test terror, look no further than https://stackoverflow.com/questions/47504015/how-to-test-terraform-files\
 \
+When determining what the from_port and to_port in the resource aws_security_group is, it may be easiest to create manual rules and then identify the from and to ports using those rules, having called: 
+\f1 \cf2 \expnd0\expndtw0\kerning0
+describe-security-groups\
+\
+Something like:\
+\
+aws ec2 describe-security-groups \\\
+    --group-ids sg-0a0c89ffcbd48f191\
+\
+\
+This can be seen here: https://blog.jwr.io/terraform/icmp/ping/security/groups/2018/02/02/terraform-icmp-rules.html\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2 \cf2 Recall that security group rules are no different than\cf0 \kerning1\expnd0\expndtw0 \
+
+\f0 \
 }

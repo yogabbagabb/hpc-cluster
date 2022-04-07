@@ -9,6 +9,10 @@ module "vpc" {
   enable_dns_hostnames = true
 }
 
-output private_subnet_ids {
-  value = {for index, id in module.vpc.private_subnets : format("%s-%s", "subnet", index) => id}
+output public_subnet_ids {
+  value = {for index, id in module.vpc.public_subnets : format("%s-%s", "subnet", index) => id}
+}
+
+output vpc_id {
+  value = module.vpc.vpc_id
 }

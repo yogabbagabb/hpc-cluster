@@ -1,6 +1,14 @@
 
-variable "private_subnet_ids" {
+variable "public_subnet_ids" {
   type = map
+}
+
+variable "security_group_id" {
+  type = string
+}
+
+variable "key_name" {
+  type = string
 }
 
 data "aws_ami" "example" {
@@ -21,22 +29,18 @@ data "aws_ami" "example" {
 
 
 resource "aws_instance" "web" {
-  for_each  =  var.private_subnet_ids
+  for_each  =  var.public_subnet_ids
   subnet_id = each.value
   associate_public_ip_address = true
+  vpc_security_group_ids = [var.security_group_id]
   ami           = data.aws_ami.example.id
+  key_name = var.key_name
   instance_type = "t3.micro"
   user_data = <<-EOF
             #! /bin/bash
-          sudo yum install epel-release
-          sudo yum update -y
-          sudo amazon-linux-extras enable nginx1.12
-          sudo yum -y install nginx
+          sudo apt update
+          sudo apt install nginx
           sudo systemctl start nginx
-          sudo systemctl enable nginx
-          chmod 2775 /usr/share/nginx/html
-          find /usr/share/nginx/html -type d -exec chmod 2775 {} \;
-          find /usr/share/nginx/html -type f -exec chmod 0664 {} \;
-          echo "<h3> Nginx server</h3>" > /usr/share/nginx/html/index.html
+          systemctl status nginx
   EOF
 }

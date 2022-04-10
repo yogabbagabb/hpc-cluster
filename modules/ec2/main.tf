@@ -36,11 +36,12 @@ resource "aws_instance" "web" {
   ami           = data.aws_ami.example.id
   key_name = var.key_name
   instance_type = "t3.micro"
-  user_data = <<-EOF
-            #! /bin/bash
-          sudo apt update
-          sudo apt install nginx
-          sudo systemctl start nginx
-          systemctl status nginx
-  EOF
+  user_data = <<-EOT
+    #!/bin/bash
+    sudo apt-get update -y
+    sudo apt-get install -y nginx
+    sudo systemctl start nginx
+    systemctl status nginx
+  EOT
+
 }

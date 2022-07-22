@@ -10,9 +10,28 @@
 [_] Create some python script on each django instance that forwards the request to the next server
 [_] Attempt to package all of this using docker
 
-
-
     Another way to troubleshoot is to ssh into the instance and check if nginx service is running “sudo systemctl status nginx”, and check the error logs in “/var/log/nginx/” if they exist
 
 sudo apt update
 sudo apt install nginx
+
+I have 2 options:
+1)
+	Associate elastic IP addresses to each ec2 instance
+	Create reverse proxies behind each instance
+	Package some sort of docker container that gets installed on each instance, the container to service api requests
+	The (from IP address, to IP address) is an argument argument passed to the docker container
+OR
+2)
+	Put each ec2 instance behind an api gateway
+	Have the api gateway route to ec2 instances.
+	How does it know where to route to?
+	It needs a map that says
+	A -> B
+	B -> C
+	C -> D
+
+	Where A, B, C, D are IP addresses?
+	We probably need elastic IP addresses here too
+
+Find out if we can ping from one web server to another

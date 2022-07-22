@@ -29,7 +29,7 @@ data "aws_ami" "example" {
 
 
 resource "aws_instance" "web" {
-  for_each  =  var.public_subnet_ids
+  for_each  = var.public_subnet_ids
   subnet_id = each.value
   associate_public_ip_address = true
   vpc_security_group_ids = [var.security_group_id]
@@ -44,4 +44,8 @@ resource "aws_instance" "web" {
     systemctl status nginx
   EOT
 
+}
+
+output "instance_ids" {
+  value = [for k, v in var.public_subnet_ids: aws_instance.web[k].id]
 }

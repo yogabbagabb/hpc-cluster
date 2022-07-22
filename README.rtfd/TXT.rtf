@@ -1,4 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2512
+{\rtf1\ansi\ansicpg1252\cocoartf2638
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 HelveticaNeue;
 }
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
@@ -11,8 +11,7 @@
 We want communication to take place from A to B to C to D. In particular, when hitting an endpoint on A, it should forward the request to B, which should forward the request to C, which should forward the request to D, which should forward the request back to A.\
 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\fs24 \cf0 {{\NeXTGraphic Pasted Graphic.png \width20860 \height8900 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+\cf0 {{\NeXTGraphic Pasted Graphic.png \width20860 \height8900 \appleattachmentpadding0 \appleembedtype0 \appleaqc
 }¬}\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 \cf0 \
 \
@@ -46,6 +45,21 @@ This can be seen here: https://blog.jwr.io/terraform/icmp/ping/security/groups/2
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f2 \cf2 Recall that security group rules are no different than\cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
-\f0 \
+\f0 \cf0 \
+One can write a script to change the allowed IP address for a security group\
+\
+https://stackoverflow.com/questions/39676691/ssh-to-ec2-instance-from-home-computer-with-variable-ip-address\
+\
+Example:\
+\
+aws ec2 authorize-security-group-ingress --group-id sg-0dd41baae91344671 --protocol tcp --port 22 --cidr 151.224.255.222/32\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \expnd0\expndtw0\kerning0
+/var/log/cloud-init-output.log is where ubuntu logs get stored
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
 }

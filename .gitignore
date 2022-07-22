@@ -1,0 +1,7 @@
+.idea/*
+.idea
+.terraform/*
+.terraform
+.plan*
+.DS_STORE
+.terraform*

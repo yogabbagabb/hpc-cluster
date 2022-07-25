@@ -38,12 +38,11 @@ resource "aws_instance" "web" {
   instance_type = "t3.micro"
   user_data = <<-EOT
     #!/bin/bash
-    sudo apt-get update -y
-    sudo apt-get install -y nginx
-    sudo systemctl start nginx
-    systemctl status nginx
-  EOT
-
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo docker pull yogabbagabb/flask_image:latest
+    sudo docker run --name flask_container -p 80:80 yogabbagabb/flask_image:latest
+    EOT
 }
 
 output "instance_ids" {

@@ -13,7 +13,7 @@ variable "elastic_ip_addresses" {
 }
 
 resource "aws_security_group" "ssh_group" {
-  name        = "allow_ssh"
+  name        = "allow_ssh_https"
   description = "Allow SSH inbound traffic"
   vpc_id      = var.vpc_id
 
@@ -26,7 +26,23 @@ resource "aws_security_group" "ssh_group" {
   }
 
   ingress {
-    description      = "HTTPS"
+    description      = "HTTPS from Home IP"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [var.homeIPAddress]
+  }
+
+  ingress {
+    description      = "HTTP from Home IP"
+    from_port        = 80
+    to_port          = 90
+    protocol         = "tcp"
+    cidr_blocks      = [var.homeIPAddress]
+  }
+
+  ingress {
+    description      = "HTTPS from other IP addresses"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
